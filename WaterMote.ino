@@ -1,5 +1,5 @@
 /*
-  WaterMeter.cpp - Arduino/Moteino sketch for reading a SY310 based water/pulse meter
+  WaterMote.ino - Arduino/Moteino sketch for reading a SY310 based water/pulse meter
   Copyright (c) 2013 Felix Rusu (felix@lowpowerlab.com).  All rights reserved.
 
   This code is free software; you can redistribute it and/or
