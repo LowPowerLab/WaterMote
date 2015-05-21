@@ -66,7 +66,7 @@ int XMIT_Interval = 5000;        // GPMthreshold should be less than 2*XMIT_Inte
 int pulseAVGInterval = 0;
 int pulsesPerXMITperiod = 0;
 float GPM=0;
-char sendBuf[MAX_DATA_LEN];
+char sendBuf[RF69_MAX_DATA_LEN];
 byte sendLen;
 
 void setup() {
@@ -137,7 +137,7 @@ void XMIT(void)
     EEPROM_Write_Counter(PulseCounter);
   }
 
-  tempstr.toCharArray(sendBuf, MAX_DATA_LEN);
+  tempstr.toCharArray(sendBuf, RF69_MAX_DATA_LEN);
   sendLen = tempstr.length();
   radio.send(GATEWAYID, sendBuf, sendLen);
   radio.sleep();
