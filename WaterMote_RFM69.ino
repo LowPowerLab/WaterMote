@@ -24,10 +24,10 @@
 
 #define NODEID       22  //network ID used for this unit
 #define NETWORKID    100  //the network ID we are on
-#define GATEWAYID     1  //the node ID we're sending to
-#define FREQUENCY  RF69_433MHZ //others: RF69_868MHZ, RF69_915MHZ
-#define ENCRYPTKEY    "sampleEncryptKey" //exactly the same 16 characters/bytes on all nodes!
-#define IS_RFM69HW    //uncomment only for RFM69HW! Leave out if you have RFM69W!
+#define GATEWAYID    1  //the node ID we're sending to
+#define FREQUENCY    RF69_915MHZ //others: RF69_433MHZ, RF69_868MHZ, match to your transceiver frequency!
+#define ENCRYPTKEY   "sampleEncryptKey" //exactly the same 16 characters/bytes on all nodes!
+#define IS_RFM69HW   //uncomment only for RFM69HW! Leave out if you have RFM69W!
 
 #define LED           9
 #define INPUTPIN      1  //INT1 = digital pin 3 (must be an interrupt pin!)
@@ -109,7 +109,9 @@ void XMIT(void)
   String tempstr = String("GAL:");
   tempstr += (unsigned long)GAL;
   tempstr += '.';
-  tempstr += ((unsigned long)(GAL * 100)) % 100;
+  byte rem = ((unsigned long)(GAL * 100)) % 100;
+  if (rem<10) tempstr += '0';
+  tempstr += rem;
 
   //calculate & output GPM
   GPM = pulseAVGInterval > 0 ? 60.0 * 1000 * (1.0/PulsesPerGAL)/(pulseAVGInterval/pulsesPerXMITperiod)
